@@ -2,6 +2,7 @@
 
 SET SQL_SAFE_UPDATES = 0;
 
+-- Change the data type of the ORDERDATE column into date.
 UPDATE sales
 SET orderdate = STR_TO_DATE(orderdate, '%m/%d/%Y %H:%i')
 WHERE orderdate IS NOT NULL;  
@@ -9,33 +10,50 @@ WHERE orderdate IS NOT NULL;
 ALTER TABLE sales
 MODIFY COLUMN orderdate DATE;
 
+-- Checking the unique values in various columns
+
+-- Check the unique values in STATUS column
 SELECT
 	DISTINCT status
 FROM sales;
+-- There are 6 different statuses: Shipped, Disputed, In Process, Cancelled, On Hold, Resolved.
 
+-- Check the unique values in YEAR_ID column
 SELECT
 	DISTINCT year_id
 FROM sales;
+-- We have data from the year 2003 - 2005.
 
+-- Check the unique values in PRODUCTLINE column
 SELECT
 	DISTINCT productline
 FROM sales;
+-- The company sells vehicles in 7 categories: Motorcycles, Classic cars, Trucks and buses, Vintage cars, Planes, Ships, and Trains.
 
+-- Check the unique values in COUNTRY column
 SELECT
 	DISTINCT country
 FROM sales;
+-- The company sells vehicles to many customers in 19 different countries.
 
+-- Check the unique values in DEALSIZE column
 SELECT
 	DISTINCT dealsize
 FROM sales;
+-- It seems that the company groups their transactions into small, medium, and large dealsizes.
 
+-- Check the unique values in TERRITORY column
 SELECT
 	DISTINCT territory
 FROM sales;
+-- The company sells vehicles to customers in 4 territories: NA (North America), EMEA (Europe, the Middle East, and Africa), 
+-- APAC (Asia-Pacific), and Japan
 
+-- Check the unique values in CUSTOMERNAME column
 SELECT
 	DISTINCT customername
 FROM sales;
+-- We have 92 distinct customers. It seems that all the buyers are companies or corporations. 
 
 SELECT
 	productline,
