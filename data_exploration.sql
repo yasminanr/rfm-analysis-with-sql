@@ -55,19 +55,25 @@ SELECT
 FROM sales;
 -- We have 92 distinct customers. It seems that all the buyers are companies or corporations. 
 
+-- Check which productline has the most and least total sales.
 SELECT
 	productline,
 	SUM(sales) AS total_sales
 FROM sales
 GROUP BY productline
 ORDER BY total_sales DESC;
+-- The productline with the most sales is Classic Cars, and the least is Trains.
 
+-- Check which year has the most and least total sales.
 SELECT
 	year_id,
 	SUM(sales) AS total_sales
 FROM sales
 GROUP BY year_id
 ORDER BY total_sales DESC;
+-- The year with the most sales is 2004, and the least is 2005. This is a bit concerning, because the amount of sales in
+-- 2005 is less than half of how much it was in 2004.
+-- So we will check the unique month_id for each year, to check if the year 2005 has data from the same number of months as 2003 and 2004.
 
 SELECT 
 	DISTINCT month_id
@@ -86,6 +92,7 @@ SELECT
 FROM sales
 WHERE year_id = 2004
 ORDER BY month_id;
+-- The year 2005 only has data for 5 months. This might explain why the total sales is so much lower than the years before.
 
 SELECT
 	dealsize,
