@@ -17,7 +17,6 @@ WITH rfm AS
 	FROM sales
 	GROUP BY customername
 ),
-
 rfm_score AS 
 (
 	SELECT
@@ -27,7 +26,6 @@ rfm_score AS
 		NTILE(4) OVER (ORDER BY monetary_value) AS rfm_monetary
 	FROM rfm
 )
-
 SELECT
 	*,
     rfm_recency + rfm_frequency + rfm_monetary AS rfm_total_score,
