@@ -12,23 +12,20 @@ MODIFY COLUMN orderdate DATE;
 
 -- EXPLORATORY ANALYSIS
 
--- Check the unique values in STATUS column
-SELECT
-	DISTINCT status
-FROM sales;
--- There are 6 different statuses: Shipped, Disputed, In Process, Cancelled, On Hold, Resolved.
-
--- Check the unique values in YEAR_ID column
-SELECT
-	DISTINCT year_id
-FROM sales;
--- We have data from the year 2003 - 2005.
-
 -- Check the unique values in PRODUCTLINE column
 SELECT
 	DISTINCT productline
 FROM sales;
 -- The company sells vehicles in 7 categories: Motorcycles, Classic cars, Trucks and buses, Vintage cars, Planes, Ships, and Trains.
+
+-- Check which productline has the most and least total sales.
+SELECT
+	productline,
+	SUM(sales) AS total_sales
+FROM sales
+GROUP BY productline
+ORDER BY total_sales DESC;
+-- The productline with the most sales is Classic Cars, and the least is Trains.
 
 -- Check the unique values in COUNTRY column
 SELECT
@@ -44,14 +41,11 @@ FROM sales;
 -- The company sells vehicles to customers in 4 territories: NA (North America), EMEA (Europe, the Middle East, and Africa), 
 -- APAC (Asia-Pacific), and Japan
 
--- Check which productline has the most and least total sales.
+-- Check the unique values in YEAR_ID column
 SELECT
-	productline,
-	SUM(sales) AS total_sales
-FROM sales
-GROUP BY productline
-ORDER BY total_sales DESC;
--- The productline with the most sales is Classic Cars, and the least is Trains.
+	DISTINCT year_id
+FROM sales;
+-- We have data from the year 2003 - 2005.
 
 -- Check which year has the most and least total sales.
 SELECT
@@ -167,4 +161,8 @@ SELECT
 FROM sales;
 -- We have 92 distinct customers. It seems that all the buyers are companies or corporations. 
 
-
+-- Check the unique values in STATUS column
+SELECT
+	DISTINCT status
+FROM sales;
+-- There are 6 different statuses: Shipped, Disputed, In Process, Cancelled, On Hold, Resolved.
