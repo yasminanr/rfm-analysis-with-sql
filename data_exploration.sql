@@ -100,8 +100,9 @@ SELECT
 FROM sales
 GROUP BY dealsize
 ORDER BY total_sales DESC;
+-- The medium dealsize has the most total sales compared to small and large.
 
--- What was the best month for sales in a specific year? How much was earned that month?
+-- What was the best month for sales in a specific year? 
 SELECT
 	month_id,
     SUM(sales) AS total_sales,
@@ -110,6 +111,7 @@ FROM sales
 WHERE year_id = 2003
 GROUP BY month_id
 ORDER BY total_sales DESC;
+-- In 2003, the month with the highest sales is November.
 
 SELECT
 	month_id,
@@ -119,6 +121,7 @@ FROM sales
 WHERE year_id = 2004
 GROUP BY month_id
 ORDER BY total_sales DESC;
+-- In 2004, the month with the highest sales is also November.
 
 SELECT
 	month_id,
@@ -128,6 +131,7 @@ FROM sales
 WHERE year_id = 2005
 GROUP BY month_id
 ORDER BY total_sales DESC;
+-- In 2005, the month with the highest sales is May.
 
 -- What products did they sell the most in that month?
 SELECT
@@ -159,4 +163,5 @@ FROM sales
 WHERE year_id = 2005 AND month_id = 5
 GROUP BY month_id, productline
 ORDER BY total_sales DESC;
+-- In those months, the product which contributes the most to the total sales is Classic Cars.
 
