@@ -1,5 +1,7 @@
 -- RFM ANALYSIS --
 
+-- Calculate RFM scores
+
 DROP TEMPORARY TABLE IF EXISTS rfm;
 CREATE TEMPORARY TABLE rfm AS
 WITH rfm AS
@@ -32,6 +34,8 @@ SELECT
     CONCAT(rfm_recency, rfm_frequency, rfm_monetary) AS rfm_score_concat
 FROM rfm_score;
 
+-- Segment customers using regular expression
+
 DROP TEMPORARY TABLE IF EXISTS rfm_segments;
 CREATE TEMPORARY TABLE rfm_segments AS
 SELECT
@@ -49,6 +53,8 @@ SELECT
 	END AS rfm_segment
 FROM rfm;
 	
+-- Show customer segmentation result 
+
 SELECT 
 	rfm_segment,
     COUNT(customername) AS segment_count
